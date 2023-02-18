@@ -24,16 +24,18 @@ typedef jack_default_audio_sample_t sample_t;
 
 int process(jack_nframes_t nframes, void* data) {
     //printf("Process");
-    MainWindow* widget = static_cast<MainWindow*>(data);
-    sample_t* in_l = static_cast<sample_t*>(jack_port_get_buffer(widget->in_l, nframes));
-    sample_t* in_r = static_cast<sample_t*>(jack_port_get_buffer(widget->in_r, nframes));    
-    sample_t* out_l = static_cast<sample_t*>(jack_port_get_buffer(widget->out_l, nframes));
-    sample_t* out_r = static_cast<sample_t*>(jack_port_get_buffer(widget->out_r, nframes));
+    MainWindow* window = static_cast<MainWindow*>(data);
+    sample_t* in_l = static_cast<sample_t*>(jack_port_get_buffer(window->in_l, nframes));
+    sample_t* in_r = static_cast<sample_t*>(jack_port_get_buffer(window->in_r, nframes));    
+    sample_t* out_l = static_cast<sample_t*>(jack_port_get_buffer(window->out_l, nframes));
+    sample_t* out_r = static_cast<sample_t*>(jack_port_get_buffer(window->out_r, nframes));
 
+    window->enabled_mutex.lock();
     for (unsigned int i = 0; i < nframes; ++i) {
-        out_l[i] = widget->gain * in_l[i];
-        out_r[i] = widget->gain * in_r[i];
+        out_l[i] = window->gain * in_l[i];
+        out_r[i] = window->gain * in_r[i];
     }
+    window->enabled_mutex.unlock();
 
     return 0;
 }

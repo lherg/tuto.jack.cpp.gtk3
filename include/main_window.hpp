@@ -36,7 +36,8 @@ public:
   jack_port_t * out_l;
   jack_port_t * out_r;
   float gain;  
-
+  std::mutex enabled_mutex;
+  
   MainWindow();
   virtual ~MainWindow();
 
