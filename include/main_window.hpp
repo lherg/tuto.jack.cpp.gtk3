@@ -1,10 +1,11 @@
-//$Id: helloworld.h 2 2003-01-21 13:41:59Z murrayc $ -*- c++ -*-
-
-/* gtkmm example Copyright (C) 2002 gtkmm development team
+/* main_window.hpp
+ *
+ * Copyright (C) 2023 https://github.com/lherg
  *
  * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License version 2
- * as published by the Free Software Foundation.
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2, or (at your option)
+ * any later version.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -12,8 +13,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
 #ifndef MAIN_WINDOW_H
@@ -37,7 +37,7 @@ public:
   jack_port_t * out_r;
   float gain;  
   std::mutex enabled_mutex;
-  
+
   MainWindow();
   virtual ~MainWindow();
 
